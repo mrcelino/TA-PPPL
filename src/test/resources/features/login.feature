@@ -1,4 +1,5 @@
 Feature: User Login
+
   Scenario: Successful login as a Buyer
     Given User opens the Avesta system login page
     When User enters the email "tesuser@example.com"
