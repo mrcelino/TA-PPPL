@@ -2,6 +2,11 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class loginPage {
     WebDriver driver;
@@ -16,28 +21,44 @@ public class loginPage {
     }
 
     public void enterEmail(String email) {
-        driver.findElement(emailInput).sendKeys(email);
+        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
+        WebElement emailField = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(emailInput)
+        );
+        emailField.sendKeys(email);
     }
 
     public void enterPassword(String password) {
-        driver.findElement(passwordInput).sendKeys(password);
+        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
+        WebElement passwordField = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(passwordInput)
+        );
+        passwordField.sendKeys(password);
     }
 
     public void clickLoginButton() {
-        driver.findElement(loginButton).click();
+        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
+        WebElement button = wait.until(
+                ExpectedConditions.elementToBeClickable(loginButton)
+        );
+        button.click();
     }
 
     public String getErrorMessage() {
-        return driver.findElement(errorMessage).getText();
+        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
+        WebElement error = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(errorMessage)
+        );
+        return error.getText();
     }
 
     public void goToLoginPage() {
-        driver.get("http://127.0.1:8000/login");
+        driver.get("https://avesta.cloud/login");
     }
 
     public void loginAs(String email, String password) {
-        driver.findElement(emailInput).sendKeys(email);
-        driver.findElement(passwordInput).sendKeys(password);
-        driver.findElement(loginButton).click();
+        enterEmail(email);
+        enterPassword(password);
+        clickLoginButton();
     }
 }

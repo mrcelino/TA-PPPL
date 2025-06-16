@@ -1,8 +1,8 @@
 Feature: User Login
   Scenario: Successful login as a Buyer
     Given User opens the Avesta system login page
-    When User enters the email "tesuser@example.com"
-    And User enters the password "driveby123"
+    When User enters the email "user@test.com"
+    And User enters the password "12345678"
     And User clicks the 'Login' button
     Then User should be redirected to the Buyer dashboard successfully
 

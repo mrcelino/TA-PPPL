@@ -22,7 +22,7 @@ public class loginSteps {
     public void user_opens_the_avesta_system_login_page() {
         this.driver = new ChromeDriver();
         this.driver.manage().window().maximize();
-        this.driver.get("http://127.0.0.1:8000/login");
+        this.driver.get("https://avesta.cloud/login");
         this.loginPage = new loginPage(this.driver);
     }
 

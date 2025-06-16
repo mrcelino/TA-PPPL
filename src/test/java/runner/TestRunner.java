@@ -9,7 +9,7 @@ import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
 
 @Suite
 @IncludeEngines("cucumber")
-@SelectClasspathResource("features") // folder tempat file .feature kamu
-@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "stepDefinitions") // package step definitions-mu
+@SelectClasspathResource("features/addEmployee.feature")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "stepDefinitions")
 public class TestRunner {
 }
