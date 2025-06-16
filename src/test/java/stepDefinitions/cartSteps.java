@@ -1,32 +1,21 @@
 package stepDefinitions;
 
-import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pages.loginPage;
-import io.cucumber.java.After;
 import pages.productPage;
 
 public class cartSteps {
 
-    WebDriver driver;
-    loginPage login;
-    productPage product;
+    WebDriver driver = TestContext.getDriver();
+    loginPage login = new loginPage(driver);
+    productPage product = new productPage(driver);
     int initialCartCount = 0;
-
-    @Before
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        login = new loginPage(driver);
-        product = new productPage(driver);
-    }
 
     private void loginUser() {
         login.goToLoginPage();
-        login.loginAs("tesuser@example.com", "driveby123");
+        login.loginAs("tes@test.com", "hahahihi");
     }
 
     @Given("the user is logged in")
@@ -61,7 +50,6 @@ public class cartSteps {
     @Then("the product should be added to the cart successfully")
     public void the_product_should_be_added_to_the_cart_successfully() {
         Assertions.assertTrue(product.getCartCount() > 0, "Cart count should be greater than 0");
-        driver.quit();
     }
 
     @Given("the user adds a product from {string} to the cart")
@@ -87,10 +75,23 @@ public class cartSteps {
         Assertions.assertEquals(initialCartCount, product.getCartCount(), "Jumlah item di keranjang seharusnya tidak bertambah");
     }
 
-    @After
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
+    @When("the user sets the quantity to {int}")
+    public void the_user_sets_the_quantity_to(Integer quantity) {
+        int currentQty = product.getCurrentQuantity();
+
+        while (currentQty < quantity) {
+            product.clickIncrementQuantity();
+
+            if (product.isStockExceededErrorVisible()) {
+                break; // stop klik jika error sudah muncul
+            }
+
+            currentQty = product.getCurrentQuantity();
         }
+    }
+
+    @Then("an error message should be shown indicating stock is insufficient")
+    public void an_error_message_should_be_shown_indicating_stock_is_insufficient() {
+        Assertions.assertTrue(product.isStockExceededErrorVisible(), "Pesan error stok melebihi seharusnya tampil");
     }
 }
