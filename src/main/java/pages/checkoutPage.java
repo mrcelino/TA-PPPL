@@ -14,7 +14,7 @@ public class checkoutPage {
     }
 
     public void open() {
-        driver.get("http://127.0.1:8000/checkout");
+        driver.get("https://avesta.cloud/checkout");
     }
 
     public void increaseQuantityUntilOverSaldo() {

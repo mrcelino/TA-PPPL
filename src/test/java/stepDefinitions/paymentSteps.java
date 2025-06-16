@@ -50,9 +50,9 @@ public class paymentSteps {
         assertTrue(payment.isOnPaymentPage());
     }
 
-    @And("User memasukkan password pembayaran {string}")
-    public void userMemasukkanPassword(String password) {
-        payment.inputPassword(password);
+    @And("User memasukkan password pembayaran")
+    public void userMemasukkanPassword() {
+        payment.inputPassword("12345678");
     }
 
     @And("User mengklik tombol Konfirmasi pembayaran")

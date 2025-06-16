@@ -17,7 +17,7 @@ Feature: Proses Pembayaran
 
     And User mengklik tombol "Bayar dengan AvestaPay"
     Then User diarahkan ke halaman "Pembayaran"
-    And User memasukkan password pembayaran "hahahihi"
+    And User memasukkan password pembayaran
     And User mengklik tombol Konfirmasi pembayaran
     Then Muncul pesan berhasil "Pembayaran berhasil"
 
@@ -36,7 +36,7 @@ Feature: Proses Pembayaran
 
     And User mengklik tombol "Bayar dengan AvestaPay"
     Then User diarahkan ke halaman "Pembayaran"
-    And User memasukkan password pembayaran "hahahihi"
+    And User memasukkan password pembayaran
     And User mengklik tombol Konfirmasi pembayaran
     Then Muncul pesan error "Saldo tidak mencukupi"
 

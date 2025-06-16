@@ -15,7 +15,7 @@ public class cartSteps {
 
     private void loginUser() {
         login.goToLoginPage();
-        login.loginAs("tes@test.com", "hahahihi");
+        login.loginAs("user@test.com", "12345678");
     }
 
     @Given("the user is logged in")

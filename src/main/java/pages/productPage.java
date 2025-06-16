@@ -29,7 +29,7 @@ public class productPage {
     By productCards = By.cssSelector(".bg-white.rounded-2xl");
 
     public void open() {
-        driver.get("http://127.0.1:8000/cariayam");
+        driver.get("http://avesta.cloud/cariayam");
     }
 
     public boolean isOnProductListingPage() {

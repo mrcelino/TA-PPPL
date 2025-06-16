@@ -2,6 +2,10 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.time.Duration;
 
 public class loginPage {
     WebDriver driver;
@@ -9,7 +13,6 @@ public class loginPage {
     By emailInput = By.cssSelector("input[placeholder='Email']");
     By passwordInput = By.cssSelector("input[placeholder='Sandi']");
     By loginButton = By.xpath("//button[contains(text(), 'Login')]");
-    By errorMessage = By.cssSelector(".text-danger");
 
     public loginPage(WebDriver driver) {
         this.driver = driver;
@@ -27,12 +30,11 @@ public class loginPage {
         driver.findElement(loginButton).click();
     }
 
-    public String getErrorMessage() {
-        return driver.findElement(errorMessage).getText();
-    }
-
     public void goToLoginPage() {
-        driver.get("http://127.0.1:8000/login");
+        driver.get("https://avesta.cloud/login");
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("html")));
     }
 
     public void loginAs(String email, String password) {
