@@ -2,9 +2,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.time.Duration;
 
@@ -14,51 +13,33 @@ public class loginPage {
     By emailInput = By.cssSelector("input[placeholder='Email']");
     By passwordInput = By.cssSelector("input[placeholder='Sandi']");
     By loginButton = By.xpath("//button[contains(text(), 'Login')]");
-    By errorMessage = By.cssSelector(".text-danger");
 
     public loginPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public void enterEmail(String email) {
-        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
-        WebElement emailField = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(emailInput)
-        );
-        emailField.sendKeys(email);
+        driver.findElement(emailInput).sendKeys(email);
     }
 
     public void enterPassword(String password) {
-        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
-        WebElement passwordField = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(passwordInput)
-        );
-        passwordField.sendKeys(password);
+        driver.findElement(passwordInput).sendKeys(password);
     }
 
     public void clickLoginButton() {
-        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
-        WebElement button = wait.until(
-                ExpectedConditions.elementToBeClickable(loginButton)
-        );
-        button.click();
-    }
-
-    public String getErrorMessage() {
-        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
-        WebElement error = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(errorMessage)
-        );
-        return error.getText();
+        driver.findElement(loginButton).click();
     }
 
     public void goToLoginPage() {
         driver.get("https://avesta.cloud/login");
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("html")));
     }
 
     public void loginAs(String email, String password) {
-        enterEmail(email);
-        enterPassword(password);
-        clickLoginButton();
+        driver.findElement(emailInput).sendKeys(email);
+        driver.findElement(passwordInput).sendKeys(password);
+        driver.findElement(loginButton).click();
     }
 }

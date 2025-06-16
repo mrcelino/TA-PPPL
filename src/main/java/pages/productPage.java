@@ -29,7 +29,7 @@ public class productPage {
     By productCards = By.cssSelector(".bg-white.rounded-2xl");
 
     public void open() {
-        driver.get("http://127.0.1:8000/cariayam");
+        driver.get("http://avesta.cloud/cariayam");
     }
 
     public boolean isOnProductListingPage() {
@@ -70,9 +70,21 @@ public class productPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(modalLocator));
 
         WebElement addToCartButton = driver.findElement(By.cssSelector(".modal.modal-open .modal-box button.bg-pink"));
+
         if (addToCartButton.isDisplayed() && addToCartButton.isEnabled()) {
             addToCartButton.click();
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".modal.modal-open")));
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+
+            if (!isStockExceededErrorVisible()) {
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".modal.modal-open")));
+            } else {
+                System.out.println("Quantity melebihi stok.");
+            }
         } else {
             System.out.println("Tombol tidak bisa diklik!");
         }
@@ -91,12 +103,34 @@ public class productPage {
 
     public boolean isSwitchStoreModalVisible() {
         try {
-            By modalTitle = By.xpath("//h3[contains(text(), 'Apakah Anda ingin beralih ke toko ini?')]");
+            By modalTitle = By.xpath("//h3[contains(text(), 'Apakah Anda ingin beralih ke')]");
             WebElement modal = wait.until(ExpectedConditions.visibilityOfElementLocated(modalTitle));
             return modal.isDisplayed();
         } catch (TimeoutException e) {
             return false;
         }
     }
+
+
+
+    public int getCurrentQuantity() {
+        By quantityDisplay = By.cssSelector("div.flex.flex-row.space-x-2 div:nth-child(2)");
+        WebElement qtyElement = wait.until(ExpectedConditions.visibilityOfElementLocated(quantityDisplay));
+        String qtyText = qtyElement.getText().trim();
+        return Integer.parseInt(qtyText);
+    }
+
+    public void clickIncrementQuantity() {
+        By incrementButton = By.cssSelector("div.flex.flex-row.space-x-2 div:nth-child(3)");
+        WebElement plusButton = wait.until(ExpectedConditions.elementToBeClickable(incrementButton));
+        plusButton.click();
+    }
+
+
+    public boolean isStockExceededErrorVisible() {
+        List<WebElement> errorElements = driver.findElements(By.cssSelector(".text-red-500"));
+        return !errorElements.isEmpty() && errorElements.get(0).isDisplayed();
+    }
+
 
 }
