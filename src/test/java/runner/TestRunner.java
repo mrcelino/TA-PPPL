@@ -15,7 +15,7 @@ import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
 
 @ConfigurationParameter(
         key = FEATURES_PROPERTY_NAME,
-        value = "classpath:features/delete_product.feature"
+        value = "classpath:features/payment.feature"
 ) //Ini kalau hanya ingin menjalankan satu features saja
 
 public class TestRunner {
