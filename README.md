@@ -73,8 +73,8 @@ Dokumentasi lengkap test suite tersedia dalam format **PDF** di dalam folder `sr
 ```lua
 TA-PPPL/
 ├── src/
-│ ├── main/ # Kode sumber utama
-│ ├── test/ # Unit test & integration test
+│ ├── main/
+│ ├── test/
 │ └── test-suite/ # Dokumentasi PDF dan file test suite
       │   ├── AVESTA-TEST SUITE PEMILIK TOKO.pdf
       │   └── AVESTA-TEST SUITE AUTHENTICATION.pdf
