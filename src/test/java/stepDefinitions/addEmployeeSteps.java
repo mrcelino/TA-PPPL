@@ -69,6 +69,7 @@ public class addEmployeeSteps {
 
     @And("the owner clicks the Tambah Karyawan button")
     public void theOwnerClicksTambahBtn(){
+        dashboardPage.clickKaryawan();
         employeePage.clickTambahKaryawan();
     }
 

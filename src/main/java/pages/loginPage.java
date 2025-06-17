@@ -35,6 +35,9 @@ public class loginPage {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("html")));
+        // Tunggu sampai input email muncul
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//input[@type='email' and @placeholder='Email']")));
     }
 
     public void loginAs(String email, String password) {
