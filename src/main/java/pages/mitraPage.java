@@ -18,7 +18,7 @@ public class mitraPage {
     }
 
     public void waitForMitraPage() {
-        wait.until(ExpectedConditions.urlContains("http://127.0.0.1:8000/mitra"));
+        wait.until(ExpectedConditions.urlContains("https://avesta.cloud/mitra"));
     }
 
     public void clickDashboardButton() {

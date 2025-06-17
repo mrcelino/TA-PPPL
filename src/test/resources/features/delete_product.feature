@@ -7,7 +7,7 @@ Feature: Pemilik toko deletes product
     And The user goes to the mitra page
     And The user presses the dashboard button
     And The user goes to the admin page and presses the button produk
-    And The user selects the product named "Dada Ayam"
+    And The user selects the product named "Dada Ayam - 450 gram"
     And The user presses the delete button on the selected product
     And The user presses the delete confirmation button
     Then The product was successfully deleted and the user remains on the page produk
@@ -19,7 +19,7 @@ Feature: Pemilik toko deletes product
     And The user goes to the mitra page
     And The user presses the dashboard button
     And The user goes to the admin page and presses the button produk
-    And The user selects the product named "Dada"
+    And The user selects the product named "Dada Ayam - 550 gram"
     And The user presses the delete button on the selected product
     But The user does not press the delete confirmation button
     Then The product is not deleted and remains in the product list

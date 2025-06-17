@@ -3,6 +3,10 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class registerPage {
     WebDriver driver;
@@ -10,6 +14,13 @@ public class registerPage {
     // Constructor untuk inisialisasi driver
     public registerPage(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public void goToRegisterPage() {
+        driver.get("https://avesta.cloud/register");
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("html")));
     }
 
     // Element untuk Nama Depan

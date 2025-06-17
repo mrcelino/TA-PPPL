@@ -10,7 +10,7 @@ Feature: Add Employee
     And the owner clicks the Tambah Karyawan button
     And the owner is redirected to Tambah Karyawan page "https://avesta.cloud/admin/tambah-karyawan"
     And the owner enters first name "TEST10" and last name "yogi" and phone "081234567890" and email "yogi1@gmail.com"
-    And the owner uploads a photo "C:\\Users\\A S U S\\Pictures\\Screenshots\\KAKAO\\Screenshot 2024-01-08 053120.png"
+    And the owner uploads a photo "C:\Users\marce\Downloads\favicon.png"
     And the owner clicks the Buat button
     Then a new employee should be successfully added
 

@@ -14,16 +14,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.loginPage;
 
 public class loginSteps {
-    WebDriver driver;
+    WebDriver driver = TestContext.getDriver();
     loginPage loginPage;
 
 
     @Given("User opens the Avesta system login page")
     public void user_opens_the_avesta_system_login_page() {
-        this.driver = new ChromeDriver();
-        this.driver.manage().window().maximize();
-        this.driver.get("https://avesta.cloud/login");
         this.loginPage = new loginPage(this.driver);
+        loginPage.goToLoginPage();
     }
 
     @When("User enters the email {string}")

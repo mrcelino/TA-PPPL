@@ -19,35 +19,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class addEmployeeSteps {
 
-    WebDriver driver;
-    loginPage login;
-    mitraPage mitraPage;
-    dashboardPage dashboardPage;
-    employeePage employeePage;
-    addEmployeePage addEmployeePage;
+    WebDriver driver = TestContext.getDriver();
+    loginPage login = new loginPage(driver);
+    mitraPage mitraPage = new mitraPage(driver);
+    dashboardPage dashboardPage = new dashboardPage(driver);
+    employeePage employeePage = new employeePage(driver);
+    addEmployeePage addEmployeePage = new addEmployeePage(driver);
 
-    @Before
-    public void setUp(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-
-        login = new loginPage(driver);
-        mitraPage = new mitraPage(driver);
-        dashboardPage = new dashboardPage(driver);
-        employeePage = new employeePage(driver);
-        addEmployeePage = new addEmployeePage(driver);
-    }
-
-    @After
-    public void tearDown(){
-        if (driver != null) {
-            driver.quit();
-        }
-    }
 
     @Given("the owner is logged in")
     public void theOwnerIsLoggedIn(){
+        WebDriver driver = TestContext.getDriver();
         login.goToLoginPage();
         login.loginAs("marcelino@mail.ugm.ac.id", "12345678");
 
@@ -63,7 +45,7 @@ public class addEmployeeSteps {
 
     @When("the owner clicks the Dashboard button")
     public void theOwnerClicksTheDashboardBtn(){
-        mitraPage.clickDashboard();
+        mitraPage.clickDashboardButton();
     }
 
     @And("the owner is redirected to Dashboard page {string}")

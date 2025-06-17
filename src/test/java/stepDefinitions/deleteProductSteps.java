@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class deleteProductSteps {
 
-    WebDriver driver;
+    WebDriver driver = TestContext.getDriver();
     loginPage login;
     mitraPage mitra;
     adminPage admin;
@@ -20,8 +20,6 @@ public class deleteProductSteps {
 
     @Given("The user is on the login page")
     public void the_user_is_on_the_login_page() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
         login = new loginPage(driver);
         mitra = new mitraPage(driver);
         admin = new adminPage(driver);
@@ -31,7 +29,7 @@ public class deleteProductSteps {
 
     @When("The user enters a valid email and password")
     public void the_user_enters_a_valid_email_and_password() {
-        login.enterEmail("mamat@gmail.com");
+        login.enterEmail("marcelino@mail.ugm.ac.id");
         login.enterPassword("12345678");
     }
 
@@ -70,7 +68,7 @@ public class deleteProductSteps {
 
     @And("The user presses the delete confirmation button")
     public void the_user_presses_the_delete_confirmation_button() {
-        produk.clickConfirmDeleteButton();
+        produk.clickConfirmDeleteButton(targetProductName); // ← sekarang pakai parameter
     }
 
     @Then("The product was successfully deleted and the user remains on the page produk")

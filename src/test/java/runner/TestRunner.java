@@ -13,10 +13,10 @@ import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
 @SelectClasspathResource("features") // folder tempat file .feature kamu
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "stepDefinitions") // package step definitions-mu
 
-@ConfigurationParameter(
-        key = FEATURES_PROPERTY_NAME,
-        value = "classpath:features/payment.feature"
-) //Ini kalau hanya ingin menjalankan satu features saja
+//@ConfigurationParameter(
+//        key = FEATURES_PROPERTY_NAME,
+//        value = "classpath:features/cart.feature"
+//) //Ini kalau hanya ingin menjalankan satu features saja
 
 public class TestRunner {
 }

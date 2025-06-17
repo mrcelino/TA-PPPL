@@ -16,15 +16,13 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class registerSteps {
-    WebDriver driver;
+    WebDriver driver = TestContext.getDriver();
     registerPage registerPage;
 
     @Given("User membuka halaman registrasi sistem Avesta")
     public void userBukaHalamanRegistrasi() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://127.0.0.1:8000/register");
         registerPage = new registerPage(driver);
+        registerPage.goToRegisterPage();
     }
 
     @And("Mengisi semua field dengan data valid:")
@@ -66,7 +64,7 @@ public class registerSteps {
     @Then("Sistem menyimpan data user dengan role Pembeli")
     public void sistemMenyimpanDataUser() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.urlToBe("http://127.0.0.1:8000/login"));
+        wait.until(ExpectedConditions.urlToBe("http://avesta.cloud/login"));
         assertTrue(driver.getCurrentUrl().contains("/login"));
     }
 

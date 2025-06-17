@@ -5,6 +5,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class adminProdukPage {
     WebDriver driver;
@@ -22,24 +23,34 @@ public class adminProdukPage {
     }
 
     public void clickDeleteButtonByProductName(String productName) {
-        String xpath = "//tr[td[contains(@class,'font-medium') and text()='" + productName + "']]//button[span[text()='Hapus']]";
+        String xpath = "//tr[td[contains(@class,'font-medium') and contains(text(),'" + productName + "')]]//button[span[text()='Hapus']]";
         WebElement deleteBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
         deleteBtn.click();
     }
 
-    public void clickConfirmDeleteButton() {
+    public void clickConfirmDeleteButton(String productName) {
         WebElement confirmBtn = wait.until(ExpectedConditions.elementToBeClickable(confirmDeleteButton));
         confirmBtn.click();
-        wait.until(ExpectedConditions.invisibilityOf(confirmBtn)); // tunggu tombol hilang
+
+        WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        shortWait.until(ExpectedConditions.invisibilityOf(confirmBtn));
+
+        By productRowLocator = By.xpath("//tr[td[contains(@class, 'font-medium') and normalize-space(text())='" + productName + "']]");
+
+        List<WebElement> productRows = driver.findElements(productRowLocator);
+        if (!productRows.isEmpty()) {
+            shortWait.until(ExpectedConditions.stalenessOf(productRows.get(0)));
+        }
     }
+
 
     public boolean isProductVisibleByName(String productName) {
         try {
-            By productNameLocator = By.xpath("//td[contains(@class, 'font-medium') and text()='" + productName + "']");
-            wait.until(ExpectedConditions.presenceOfElementLocated(productNameLocator));
-            return true; // produk masih ada
-        } catch (TimeoutException e) {
-            return false; // produk tidak ditemukan
+            By productNameLocator = By.xpath("//td[contains(@class, 'font-medium') and normalize-space(text())='" + productName + "']");
+            WebElement product = wait.until(ExpectedConditions.presenceOfElementLocated(productNameLocator));
+            return product.isDisplayed();
+        } catch (TimeoutException | NoSuchElementException e) {
+            return false;
         }
     }
 }

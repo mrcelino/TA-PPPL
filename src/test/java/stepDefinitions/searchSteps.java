@@ -13,19 +13,9 @@ import java.util.List;
 
 public class searchSteps {
 
-    WebDriver driver;
-    loginPage login;
-    homePage home;
-
-    @Before
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-
-        login = new loginPage(driver);
-        home = new homePage(driver);
-
-    }
+    WebDriver driver = TestContext.getDriver();
+    loginPage login = new loginPage(driver);
+    homePage home = new homePage(driver);
 
     private void loginUser() {
         login.goToLoginPage();
@@ -70,17 +60,10 @@ public class searchSteps {
         }
     }
 
-
     @Then("the search should show a message {string}")
     public void tthe_search_should_show_a_message(String message) {
         Assertions.assertTrue(home.isNoResultMessageDisplayed(), "Product not found");
     }
 
-//    @After
-//    public void tearDown() {
-//        if (driver != null) {
-//            driver.quit();
-//        }
-//    }
 }
 
