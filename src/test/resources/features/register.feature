@@ -6,7 +6,7 @@ Feature: Registrasi User
     When Mengisi semua field dengan data valid:
       | Nama Depan      | John          |
       | Nama Belakang   | Doe           |
-      | Email           | johnn@doe13.com  |
+      | Email           | johnn@doe20.com  |
       | Nomor HP        | 081234567890  |
       | Sandi           | Password123!  |
       | Konfirmasi Sandi| Password123!  |

@@ -75,12 +75,6 @@ public class registerSteps {
         assertTrue(driver.getCurrentUrl().contains("/login"));
     }
 
-    @Then("Menampilkan pesan 'Registrasi berhasil'")
-    public void menampilkanPesanRegistrasiBerhasil() {
-        assertTrue(registerPage.getSuccessMessage().isDisplayed());
-        assertEquals("Registrasi berhasil", registerPage.getSuccessMessage().getText());
-    }
-
     @Then("Sistem menampilkan pesan error email tidak valid")
     public void sistemMenampilkanPesanErrorEmail() {
         WebElement emailField = registerPage.getEmailField();
