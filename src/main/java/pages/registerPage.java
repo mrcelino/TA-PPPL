@@ -10,10 +10,12 @@ import java.time.Duration;
 
 public class registerPage {
     WebDriver driver;
+    private WebDriverWait wait;
 
     // Constructor untuk inisialisasi driver
     public registerPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Pindahkan ke sini
     }
 
     public void goToRegisterPage() {
@@ -25,33 +27,46 @@ public class registerPage {
 
     // Element untuk Nama Depan
     public WebElement getFirstNameField() {
-        return driver.findElement(By.xpath("//input[@placeholder='Nama Depan']"));
+        By locator = By.xpath("//input[@placeholder='Nama Depan']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return driver.findElement(locator);
     }
 
     // Element untuk Nama Belakang
     public WebElement getLastNameField() {
-        return driver.findElement(By.xpath("//input[@placeholder='Nama Belakang']"));
+        By locator = By.xpath("//input[@placeholder='Nama Belakang']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return driver.findElement(locator);
     }
 
     // Element untuk Email
     public WebElement getEmailField() {
-        return driver.findElement(By.xpath("//input[@placeholder='Email']"));
+        By locator = By.xpath("//input[@placeholder='Email']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return driver.findElement(locator);
     }
 
     // Element untuk Nomor HP
     public WebElement getPhoneNumberField() {
-        return driver.findElement(By.xpath("//input[@placeholder='Nomor HP']"));
+        By locator = By.xpath("//input[@placeholder='Nomor HP']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return driver.findElement(locator);
     }
 
     // Element untuk Sandi
     public WebElement getPasswordField() {
-        return driver.findElement(By.xpath("//input[@placeholder='Sandi']"));
+        By locator = By.xpath("//input[@placeholder='Sandi']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return driver.findElement(locator);
     }
 
     // Element untuk Konfirmasi Sandi
     public WebElement getConfirmPasswordField() {
-        return driver.findElement(By.xpath("//input[@placeholder='Konfirmasi Kata Sandi']"));
+        By locator = By.xpath("//input[@placeholder='Konfirmasi Kata Sandi']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return driver.findElement(locator);
     }
+
 
     public WebElement getAgreementCheckbox() {
         return driver.findElement(By.xpath("//input[@type='checkbox']"));

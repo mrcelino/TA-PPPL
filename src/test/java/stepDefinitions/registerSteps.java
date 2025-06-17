@@ -64,7 +64,7 @@ public class registerSteps {
     @Then("Sistem menyimpan data user dengan role Pembeli")
     public void sistemMenyimpanDataUser() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.urlToBe("http://avesta.cloud/login"));
+        wait.until(ExpectedConditions.urlToBe("https://avesta.cloud/login"));
         assertTrue(driver.getCurrentUrl().contains("/login"));
     }
 
