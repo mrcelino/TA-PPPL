@@ -69,16 +69,19 @@ Tests to validate **store management functionalities** such as employee manageme
 
 ## 📚 Documentation
 
-Dokumentasi lengkap test suite tersedia dalam format **PDF** di dalam folder `src/test-suite` dan dikelola melalui **QASE.io**, sebuah test case management tools.
+Dokumentasi lengkap test suite tersedia dalam format **PDF** di dalam folder `src/test-suite` dan dikelola melalui **QASE.io**, sebuah test case management tools. 
+Bug Reporting juga telah tersedia dengan format **.xlsx** di dalam folder `src/bug-reporting`.
 ```lua
 TA-PPPL/
 ├── src/
-│ ├── main/
-│ ├── test/
-│ └── test-suite/ # Dokumentasi PDF dan file test suite
-      │   ├── AVESTA-TEST SUITE PEMILIK TOKO.pdf
-      │   └── AVESTA-TEST SUITE AUTHENTICATION.pdf
-      │   └── AVESTA-TEST SUITE PEMBELI.pdf
+│   ├── bug-reporting/ #Dokumentasi Bug Reporting
+│   │   └── Bug Reporting PPPL_Kelompok 14
+│   ├── main/
+│   ├── test/
+│   └── test-suite/ # Dokumentasi PDF dan file test suite
+│       ├── AVESTA-TEST SUITE PEMILIK TOKO.pdf
+│       ├── AVESTA-TEST SUITE AUTHENTICATION.pdf
+│       └── AVESTA-TEST SUITE PEMBELI.pdf
 ```
 
 
